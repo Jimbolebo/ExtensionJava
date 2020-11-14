@@ -72,6 +72,10 @@ public class ListofSat {
         return listOfSat.size();
     }
 
+    public ArrayList<Satelitte> getList(){
+        return listOfSat;
+    }
+
     /**
      * 
      * @param i The index of the wanted Satellite

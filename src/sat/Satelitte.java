@@ -44,7 +44,7 @@ public class Satelitte {
       * Allows us to obtain the name of the satelitte.
       * @return A string which is the name of the satelitte.
       */
-    String getName(){
+    public String getName(){
         return satName;
     }
 
