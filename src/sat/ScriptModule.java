@@ -34,7 +34,7 @@ public class ScriptModule {
         System.out.println(filename+".txt");
 
         try{
-	        lecteurAvecBuffer = new BufferedReader(new FileReader(filename+".txt"));
+	        lecteurAvecBuffer = new BufferedReader(new FileReader("SCRIPTS/"+filename+".txt"));
         }
         catch(FileNotFoundException exc){
             System.out.println("Error: Script File not found");
