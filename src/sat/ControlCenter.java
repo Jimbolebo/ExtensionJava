@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ControlCenter {
     /** The list of satelittes that the control center can command. */
-    private ArrayList<Satelitte> satList = new ArrayList<Satelitte>();
+    private ListofSat satList;
     /** 
      * The archive containing the data collected by the control center thanks to 
      * its satelittes.
@@ -28,8 +28,8 @@ public class ControlCenter {
      * @param listOfSat The list of satelittes linked to the control center that 
      * we create.
      */
-    public ControlCenter(ArrayList<Satelitte> listOfSat){
-        satList = listOfSat;
+    public ControlCenter(){
+        satList = new ListofSat();
         archive = new Archive();
         scriptModule = new ScriptModule(this);
     }
@@ -53,6 +53,9 @@ public class ControlCenter {
         
     }
 
+    public ListofSat getsatList(){
+        return satList;
+    }
 
     /**
      * Processes the request sent by the user of by the ScriptModule
@@ -60,7 +63,7 @@ public class ControlCenter {
      * @param line
      * @return
      */
-    String sendRequests(String line){
+    public String sendRequests(String line){
             /** Leave the loop if we enter the request LEAVE. */
             if(line.contentEquals("LEAVE")==true){
                 System.out.println("Bye !");

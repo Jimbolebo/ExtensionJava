@@ -45,7 +45,7 @@ abstract public class Component {
      * Allows us to get the name of the component.
      * @return A string, the name of the component.
      */
-    String getName(){
+    public String getName(){
         return compoName;
     }
 

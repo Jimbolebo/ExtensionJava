@@ -50,8 +50,8 @@ public class ScrollPanel extends JPanel {
      * @param result The result of the request: true for success and false for failure
      * @throws BadLocationException
      */
-    public void write(String txt, Boolean result) throws BadLocationException {
-        if(result){ 
+    public void write(String txt, String result) throws BadLocationException {
+        if(result.equals("OK")){ 
             doc.insertString(doc.getLength(), txt +"\n",green);
         } 
         else {

@@ -36,10 +36,10 @@ class DATAButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String request = view.getSat().getName()+":"+equipement+":DATA";
-        boolean result = view.getControlCenter().Request(request);
+        String result = view.getControlCenter().sendRequests(request);
         try {
             view.getScrollPanel().write(request, result);
-            if(result) {
+            if(result.equals("OK")) {
                 label.setForeground(Color.GREEN);
             } else {
                 label.setForeground(Color.RED);

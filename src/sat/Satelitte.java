@@ -22,21 +22,9 @@ public class Satelitte {
      * same characteristics to the list of the satelitte.
      * @param family The family to which the satelitte belongs.
      */
-    public Satelitte(Family family){
-        int i = family.getSize()+1;
-        String name = family.getFamilyName()+"SAT"+String.valueOf(i);
-        satName = name;
-        family.sizeIncrease();
-
-        /**
-         * Fullfil the list of components of the satelitte by going through the one of the family and creating
-         * new ones with the same characteristics, but not the same place in memory.
-         */
-        compoList = new ArrayList<Component>();
-        for(int j =0; j < family.numberOfComp(); j++){
-            compoList.add(family.copyCompo(j));
-        }
-        
+    public Satelitte(ArrayList<Component> listOfComp,String satname){
+        this.satName = satname;
+        this.compoList = listOfComp;    
     }
 
     
@@ -44,7 +32,7 @@ public class Satelitte {
       * Allows us to obtain the name of the satelitte.
       * @return A string which is the name of the satelitte.
       */
-    String getName(){
+    public String getName(){
         return satName;
     }
 
@@ -112,6 +100,11 @@ public class Satelitte {
     Data teleMeasure(int compoIndex){
         return compoList.get(compoIndex).teleMeasure();
     }
+
+
+	public ArrayList<Component> getCompoList() {
+		return compoList;
+	}
 
 
 }
