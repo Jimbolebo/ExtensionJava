@@ -48,7 +48,7 @@ class ONButton implements ActionListener {
 
         } catch (BadLocationException e1) {
             System.out.println("Error System");
-            System.exit(1);
+            System.exit(0);
         }
     }
 }
