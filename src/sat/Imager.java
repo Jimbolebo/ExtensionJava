@@ -1,6 +1,4 @@
 package sat;
-import java.util.Random;
-
 
 /**
  * A class describing an imager, which is a type of component
@@ -33,8 +31,6 @@ public class Imager extends Component{
      * @return A data containing the random measure, and the Date of this measurement.
      */
     Data teleMeasure(){
-        Random rand = new Random();
-        double measureCollected = rand.nextDouble();
-        return(new Value(measureCollected));
+        return(new Bitmap(30,30));
     }
 }
