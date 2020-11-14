@@ -56,6 +56,10 @@ public class ControlCenter {
         return satList;
     }
 
+    public ScriptModule gScriptModule(){
+        return scriptModule;
+    }
+
     /**
      * Processes the request sent by the user of by the ScriptModule and returns a
      * String element indicating the state of the executed operation.

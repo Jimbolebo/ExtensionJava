@@ -9,7 +9,6 @@ import javax.swing.JTextArea;
 import sat.Component;
 import sat.ControlCenter;
 import sat.Satelitte;
-
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class View {
     private ControlCenter cc;
     private Satelitte sat;
     private ScrollPanel scrollpanel;
+    private ArrayList<JLabel> listOfLabel;
 
     private JPanel pane;
     private JFrame mainWindow;
@@ -35,7 +35,7 @@ public class View {
         this.cc = cc;
         this.sat = sat;
         this.scrollpanel = scrollpanel;
-
+        this.listOfLabel = new ArrayList<JLabel>();
         ArrayList<Component> listOfComp = sat.getCompoList();
 
         this.pane = new JPanel(new GridLayout(listOfComp.size()+1,1,0,5));
@@ -46,6 +46,7 @@ public class View {
             JButton buttonOFF = new JButton("OFF");
             JButton buttonDATA = new JButton("DATA");
             JLabel label = new JLabel(listOfComp.get(i).getName());
+            listOfLabel.add(label);
 
             buttonON.addActionListener(new ONButton(this,listOfComp.get(i).getName(),label));
             buttonOFF.addActionListener(new OFFButton(this,listOfComp.get(i).getName(),label));
@@ -68,7 +69,7 @@ public class View {
         JTextArea textarea = new JTextArea();
         JLabel scriptlabel = new JLabel("SCRIPT");
         JButton buttonSCRIPT = new JButton("EXECUTE SCRIPT");
-        buttonSCRIPT.addActionListener(new SCRIPTButton(this,textarea,scriptlabel));
+        buttonSCRIPT.addActionListener(new SCRIPTButton(this,textarea));
 
         JPanel scriptpanel = new JPanel(new GridLayout(1,3));
         scriptpanel.add(scriptlabel);
@@ -114,5 +115,9 @@ public class View {
      */
     public Satelitte getSat(){
         return sat;
+    }
+
+    public ArrayList<JLabel> getListOfLabels(){
+        return listOfLabel;
     }
 }

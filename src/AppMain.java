@@ -25,7 +25,6 @@ import sat.Satelitte;
 public class AppMain {
 
     public static void main(String[] args) throws IOException {
-
         ControlCenter cc = new ControlCenter();
         ListofSat satlist = cc.getsatList();
         

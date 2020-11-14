@@ -26,7 +26,7 @@ abstract public class Component {
      * This method gives us the current state of the component.
      * @return A string, "ON" or "OFF" depending on the state of the component.
      */
-    String getState(){
+    public String getState(){
         return state;
     }
     

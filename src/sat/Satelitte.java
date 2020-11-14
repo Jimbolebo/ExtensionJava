@@ -51,7 +51,7 @@ public class Satelitte {
      * @param compoName The name of the component we're looking for.
      * @return The index of the component in the list. If we don't find it, it returns the size of the list.
      */
-    int getCompoIndex(String compoName){
+    public int getCompoIndex(String compoName){
         int j = 0;
         while(j < compoList.size()){
             if (compoList.get(j).getName().contentEquals(compoName) == true) {

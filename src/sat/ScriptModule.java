@@ -1,14 +1,17 @@
 package sat;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.lang.InterruptedException;
 
 public class ScriptModule {
     private ControlCenter controlcenter;
     private String last_statut;
+    private ArrayList<String> historic;
 
     /**
      * Basic ScriptModule constructor.
@@ -17,6 +20,11 @@ public class ScriptModule {
     public ScriptModule(ControlCenter controlcenter){
         this.controlcenter = controlcenter;
         this.last_statut="OK";
+        this.historic=null;
+    }
+
+    public ArrayList<String> getHistoric(){
+        return this.historic;
     }
 
     /**
@@ -29,6 +37,7 @@ public class ScriptModule {
      * @throws IOException
      */
     public String read(String satName,String filename) throws IOException{
+        this.historic = new ArrayList<String>();
         BufferedReader lecteurAvecBuffer = null;
         String ligne;
         System.out.println(filename+".txt");
@@ -52,6 +61,7 @@ public class ScriptModule {
                         ligne=lecteurAvecBuffer.readLine();
                         for(int i=0;i<n;i++){
                             this.last_statut=controlcenter.sendRequests(satName+":"+ligne);
+                            historic.add(last_statut+","+satName+":"+ligne);
                         }
                     }
                     //Implements the ANTHEN condition.
@@ -59,6 +69,7 @@ public class ScriptModule {
                         ligne=lecteurAvecBuffer.readLine();
                         if (this.last_statut=="OK"){
                             this.last_statut=controlcenter.sendRequests(satName+":"+ligne);
+                            historic.add(last_statut+","+satName+":"+ligne);
                         }
                     }
                     //Implements the ORELSE condition.
@@ -66,6 +77,7 @@ public class ScriptModule {
                         ligne=lecteurAvecBuffer.readLine();
                         if(this.last_statut.equals("KO")){
                             this.last_statut=controlcenter.sendRequests(satName+":"+ligne);
+                            historic.add(last_statut+","+satName+":"+ligne);
                         }
                     }
                     //Implements the AT condition.
@@ -92,6 +104,7 @@ public class ScriptModule {
                      */
                     else{
                         this.last_statut=controlcenter.sendRequests(satName+":"+ligne);
+                        historic.add(last_statut+","+satName+":"+ligne);
                     }
                 }
             }
