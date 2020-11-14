@@ -64,7 +64,7 @@ public class ControlCenter {
      * @return
      * @throws IOException
      */
-    public String sendRequests(String line) throws IOException {
+    public String sendRequests(String line) {
             /** Leave the loop if we enter the request LEAVE. */
             if(line.contentEquals("LEAVE")==true){
                 System.out.println("Bye !");
@@ -125,7 +125,12 @@ public class ControlCenter {
                     }
 
                     Data data = satList.get(satIndex).teleMeasure(compoIndex);
-                    archive.addData(data, satList.getList().get(satIndex).getName()); // add the data collected to the archive
+                    try {
+                        archive.addData(data, satList.getList().get(satIndex).getName());
+                    } catch (IOException e) {
+                        System.out.println("Archive error");
+                       return "STOP";
+                    } // add the data collected to the archive
                     return "OK";
                 }
             }
