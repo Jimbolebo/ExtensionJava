@@ -1,6 +1,5 @@
 package sat;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -58,12 +57,14 @@ public class ControlCenter {
     }
 
     /**
-     * Processes the request sent by the user of by the ScriptModule
-     * and returns a String element indicating the state of the executed operation.
+     * Processes the request sent by the user of by the ScriptModule and returns a
+     * String element indicating the state of the executed operation.
+     * 
      * @param line
      * @return
+     * @throws IOException
      */
-    public String sendRequests(String line){
+    public String sendRequests(String line) throws IOException {
             /** Leave the loop if we enter the request LEAVE. */
             if(line.contentEquals("LEAVE")==true){
                 System.out.println("Bye !");
@@ -124,7 +125,7 @@ public class ControlCenter {
                     }
 
                     Data data = satList.get(satIndex).teleMeasure(compoIndex);
-                    archive.addData(data); // add the data collected to the archive
+                    archive.addData(data, satList.getList().get(satIndex).getName()); // add the data collected to the archive
                     return "OK";
                 }
             }
