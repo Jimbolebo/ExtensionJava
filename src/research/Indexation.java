@@ -1,10 +1,7 @@
-package research;
+package sat;
 
 import java.util.TreeMap;
 import java.util.Map.Entry;
-
-import sat.Data;
-
 import java.time.Instant;
 import java.time.format.DateTimeParseException;
 import java.io.BufferedReader;
@@ -73,7 +70,7 @@ public class Indexation {
                 Data dataRead = (Data) in3.readObject();
                 in3.close();
 
-                Instant date = dataRead.getDate();
+                Instant date = dataRead.date;
                 
                 /** Checks if the date already exists in the map : the process used to add the data would change according to it. */
                 if(dataByDate.containsKey(date)){
@@ -87,7 +84,7 @@ public class Indexation {
                 listOfFiles.add(path2);
                 
                 /** Same approach with the type of data. */
-                String dataType = dataRead.getType();
+                String dataType = dataRead.dataType;
                 if(dataByType.containsKey(dataType)){
                     dataByType.get(dataType).add(path2);
                 } else {
@@ -97,7 +94,7 @@ public class Indexation {
                 }
 
                 /** Same approach with the geolocation. */
-                String dataLoc = dataRead.getLoc();
+                String dataLoc = dataRead.geoLoc;
                 if(dataByLoc.containsKey(dataLoc)){
                     dataByLoc.get(dataLoc).add(path2);
                 } else {
@@ -162,6 +159,12 @@ public class Indexation {
             }
             Instant date1 = Instant.parse(dates[0]);
             Instant date2 = Instant.parse(dates[1]);
+            try{
+                dataByDate.subMap(date1,date2);
+            } catch(IllegalArgumentException iae){
+                System.out.println("ERROR : Date 2 must be > date 1");
+                return listOfFilesFound;
+            }
             SortedMap<Instant, ArrayList<String>> newMap = dataByDate.subMap(date1,date2);
             for(Entry<Instant, ArrayList<String>> data : newMap.entrySet()){
                 listOfFilesFound.addAll(data.getValue());
