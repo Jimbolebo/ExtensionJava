@@ -84,7 +84,7 @@ public class ScriptModule {
                     else if(ligne.split(" ")[0].equals("AT")){
                         OffsetDateTime dateTime = OffsetDateTime.now();
                         String date = dateTime.toString();
-                        while(ligne.split(" ")[1]!=date){
+                        while(!ligne.split(" ")[1].equals(date)){
                             dateTime = OffsetDateTime.now();
                             date = dateTime.toString();
                         }
