@@ -27,23 +27,25 @@ class SCRIPTButton implements ActionListener {
         String request = view.getSat().getName()+":"+textarea.getText();
         view.getControlCenter().sendRequests(request);
         ArrayList<String> historic = view.getControlCenter().gScriptModule().getHistoric();
-        try {
-            for(int i = 0; i<historic.size();i++){
-                String[] result = historic.get(i).split(",");
-                view.getScrollPanel().write(result[1], result[0]);
+        if(historic!=null){
+            try {
+                for(int i = 0; i<historic.size();i++){
+                    String[] result = historic.get(i).split(",");
+                    view.getScrollPanel().write(result[1], result[0]);
 
-                String[] request_i = result[1].split(":");
-                int j = view.getSat().getCompoIndex(request_i[1]);
+                    String[] request_i = result[1].split(":");
+                    int j = view.getSat().getCompoIndex(request_i[1]);
 
-                if(result[0].equals("OK")) {
-                    view.getListOfLabels().get(j).setForeground(Color.GREEN);
-                } else {
-                    view.getListOfLabels().get(j).setForeground(Color.RED);
-                } 
+                    if(result[0].equals("OK")) {
+                        view.getListOfLabels().get(j).setForeground(Color.GREEN);
+                    } else {
+                        view.getListOfLabels().get(j).setForeground(Color.RED);
+                    } 
+                }
+            } catch (BadLocationException e1) {
+                System.out.println("Error System");
+                System.exit(0);
             }
-        } catch (BadLocationException e1) {
-            System.out.println("Error System");
-            System.exit(0);
-        }
+        } else {System.out.println("ERROR : Enter the name of a Script");}
     }
 }
