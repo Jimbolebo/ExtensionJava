@@ -28,6 +28,7 @@ public class ScrollPanel extends JPanel {
      */
     public ScrollPanel() {
         JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
         this.doc = textPane.getStyledDocument();
 
         this.red = doc.addStyle("red", null);
