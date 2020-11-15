@@ -1,4 +1,4 @@
-package sat;
+package research;
 
 import java.util.TreeMap;
 import java.util.Map.Entry;
@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.SortedMap;
+import sat.Data;
 /**
  * A class describing a structure of an index.
  * 
@@ -70,7 +71,7 @@ public class Indexation {
                 Data dataRead = (Data) in3.readObject();
                 in3.close();
 
-                Instant date = dataRead.date;
+                Instant date = dataRead.getDate();
                 
                 /** Checks if the date already exists in the map : the process used to add the data would change according to it. */
                 if(dataByDate.containsKey(date)){
@@ -84,7 +85,7 @@ public class Indexation {
                 listOfFiles.add(path2);
                 
                 /** Same approach with the type of data. */
-                String dataType = dataRead.dataType;
+                String dataType = dataRead.getType();
                 if(dataByType.containsKey(dataType)){
                     dataByType.get(dataType).add(path2);
                 } else {
@@ -94,7 +95,7 @@ public class Indexation {
                 }
 
                 /** Same approach with the geolocation. */
-                String dataLoc = dataRead.geoLoc;
+                String dataLoc = dataRead.getLoc();
                 if(dataByLoc.containsKey(dataLoc)){
                     dataByLoc.get(dataLoc).add(path2);
                 } else {
