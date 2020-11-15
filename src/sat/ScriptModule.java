@@ -54,7 +54,7 @@ public class ScriptModule {
             System.out.println(ligne);
             //Verifies if the current line is not a commentary.
             if(ligne.length()!=0){
-                if(ligne.substring(0,1)!=";"){
+                if(!ligne.substring(0,1).equals(";")){
                     // Implements the REPEAT operation.
                     if(ligne.split(" ")[0].equals("REPEAT")){
                         int n=Integer.parseInt(ligne.split(" ")[1]);
